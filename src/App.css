@@ -29,3 +29,8 @@
 /* body{
     background-color: #111827;
 } */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #f0f0f0;
+}
