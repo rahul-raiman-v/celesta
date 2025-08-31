@@ -1,0 +1,1 @@
+export { PaperPresentationImg } from "./presentation";
