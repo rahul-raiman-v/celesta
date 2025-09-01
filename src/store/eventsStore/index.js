@@ -13,8 +13,8 @@ export const EventsStore = create((set) => ({
           eventType: 'Technical Event',
           date: 'September 26, 2025',
           venue: 'BIT Campus',
-          img: 'https://res.cloudinary.com/dsz2br3qg/image/upload/v1755446916/WhatsApp_Image_2025-08-17_at_21.35.26_f3b7650e_n2djqo.jpg',
-          brochureLink:'https://drive.google.com/uc?export=download&id=1XGTo2JYwcNnPJOYmfv6Zvwoed2GqhNh8',
+          img: 'https://res.cloudinary.com/dbyxgnjkw/image/upload/v1756731069/WhatsApp_Image_2025-09-01_at_18.18.53_451861a1_tzhbqv.jpg',
+          brochureLink:'https://drive.google.com/uc?export=download&id=1-xn0sJlnpTN__IjeJPId-i8MkXIdva0S',
           highlight: true,
           tabs: [
             {
@@ -31,13 +31,7 @@ export const EventsStore = create((set) => ({
                   id: '1',
                   title: 'Round 1',
                   content:
-                    'Participants merge two well-known brands into a fresh concept with a unique name, tagline, strategy, and pitch.',
-                },
-                {
-                  id: '2',
-                  title: 'Round 2',
-                  content:
-                    'Teams are given a failing brand to analyse and revive using creative rebranding strategies, target market tweaks, and promotional plans, all presented using a provided PPT template. The event tests creativity, strategy, market insight, and presentation skills.',
+                    'The competition has a single round, where participants present their technical papers to experts, showcasing innovation, research, and problem-solving. A short Q&A follows, and winners are decided based on creativity, technical knowledge, relevance, and presentation skills',
                 },
               ],
             },
@@ -67,7 +61,7 @@ export const EventsStore = create((set) => ({
                   id: '4',
                   title: 'Rule 4',
                   content:
-                    'Participants must BRING and ensure their devices are charged before Round 2. Charging stations may be limited.',
+                    'Participants must BRING and ensure their devices are charged before Round 1. Charging stations may be limited.',
                 },
                 {
                   id: '5',
@@ -256,7 +250,7 @@ export const EventsStore = create((set) => ({
                 },
                 {
                   id: 'person3',
-                  name: 'Pooja',
+                  name: 'Pooja K',
                   designation: 'Co-Ordinator',
                   email: 'person3@example.com',
                   phone: '+91 7871448301',
@@ -281,7 +275,7 @@ export const EventsStore = create((set) => ({
               id: 'description',
               title: 'Description',
               content:
-                'BREAKTHRU is a high-impact problem-solving competition where participants tackle real-world entrepreneurial challenges with creativity and strategy. Teams will analyse the given problem, develop innovative and practical solutions, and present their approach with clarity and conviction. The event tests critical thinking, market insight, and execution skills — rewarding those who can break through obstacles and turn challenges into business opportunities.',
+                 "A coding-based competition designed to test logical thinking, analytical ability, and programming skills. Participants will solve real-world problems within a limited timeframe using their coding knowledge.",
             },
             {
               id: 'rounds',
@@ -428,7 +422,7 @@ export const EventsStore = create((set) => ({
                 id: 'description',
                 title: 'Description',
                 content:
-                    'QuizXtreme is a high-energy quiz competition designed to challenge participants’ knowledge of entrepreneurship, startups, business strategies, and market trends. Competing in multiple exciting rounds, contestants will tackle questions ranging from iconic founders and breakthrough innovations to funding, branding, and real-world case studies. The event tests business acumen, quick thinking, and teamwork — rewarding those with sharp minds and a passion for the entrepreneurial world.',
+                    "A fast-paced event that challenges participants’ knowledge across multiple domains, including technology, current affairs, and general awareness. It’s the perfect mix of fun and learning.",
                 },
                 {
                 id: 'rounds',
@@ -520,18 +514,18 @@ export const EventsStore = create((set) => ({
                     // },
                     {
                     id: 'person2',
-                    name: 'Pooja K',
+                    name: 'Aniruth',
                     designation: 'Co-Ordinator',
                     email: 'person3@example.com',
-                    phone: '+91 7871448301',
+                    phone: '+91 7871448301',// need to be changed
                     img: 'https://via.placeholder.com/150',
                     },
                     {
                     id: 'person3',
-                    name: ' Mariya Christy V',
+                    name: 'Lathika S',
                     designation: 'Co-Ordinator',
                     email: 'person3@example.com',
-                    phone: '+91 9344265121',
+                    phone: '+91 6385213303',
                     img: 'https://via.placeholder.com/150',
                     },
                 ],
@@ -553,7 +547,7 @@ export const EventsStore = create((set) => ({
               id: 'description',
               title: 'Description',
               content:
-                'Guess in A Glance is an electrifying event designed to keep participants on their toes through two thrilling stages. Each team will consist of 4–5 members, fostering teamwork, quick thinking, and collaboration. Only the top-performing teams from the first round will make it to the grand second round, ensuring a truly competitive spirit. The topics for both rounds will be revealed right at the venue, bringing a wave of surprise, energy, and excitement to the challenge. With every second counting, this event promises non-stop fun and an adrenaline rush for all participants.',
+                "A light-hearted, engaging event where participants solve puzzles and decode connections between words, pictures, or ideas. It blends creativity with quick thinking for an entertaining experience.",
             },
             {
               id: 'rounds',
@@ -836,7 +830,7 @@ export const EventsStore = create((set) => ({
         {
           id: 'workshop-1',
           eventTitle: 'Workshop',
-          eventType: 'Startup Workshop',
+          eventType: 'Workshop',
           img: 'https://res.cloudinary.com/dbyxgnjkw/image/upload/v1756633064/dc27b3df-2f54-4b10-8bfb-38d97d13b113_ydsesg.png',
           date: 'September 26, 2025',
           venue: 'BIT Campus',
@@ -863,14 +857,14 @@ export const EventsStore = create((set) => ({
               content: [
                 {
                   id: '1',
-                  speakerName: 'Dr K Balakrishnan',
-                  designation: 'CEO of TBI',
+                  speakerName: 'Dr',
+                  designation: 'CEO of ',
                 },
-                {
-                  id: '2',
-                  speakerName: 'Mr Sezhiyan Bharathi',
-                  designation: 'IPR - Corporate Trainer',
-                },
+                // {
+                //   id: '2',
+                //   speakerName: 'Mr Sezhiyan Bharathi',
+                //   designation: 'IPR - Corporate Trainer',
+                // },
               ],
             },
             {
