@@ -63,6 +63,7 @@ const initialFormState = {
   eliteTechnical2:"",
   classicTechnical:"",
   classicWorkshop:"",
+  termsAndCondition:"",
 };
 
 export const useComboStore = create((set,get) => ({

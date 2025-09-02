@@ -56,3 +56,11 @@
   scrollbar-width: thin;
   scrollbar-color: #333 #f0f0f0;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}

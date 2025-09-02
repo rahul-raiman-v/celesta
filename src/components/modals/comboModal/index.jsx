@@ -3,25 +3,15 @@ import Select from "react-select";
 import { useComboStore } from "../../../store";
 import { CircleArrowLeft, CircleArrowRight, Upload } from "lucide-react";
 
-const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
-  // Handles changes for standard text inputs
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    onMemberChange(id, name, value);
-  };
-  // Handles changes for the 'react-select' component
-  const handleSelectChange = (name, selectedOption) => {
-    // Pass the entire selected option object or just the value, depending on your needs
-    // Storing the object is often better for pre-selecting the option later.
-    onMemberChange(id, selectedOption.name, name);
-  };
+const TeamMemberForm = ({ formData, handleFormChange, id, isRequired }) => {
+ 
   const idRef = React.useRef(null);
   const handleUploadClick = () => {
     idRef.current?.click();
   };
   return (
-    <div className="mt-4 grid grid-cols-2 items-center gap-x-6 gap-y-4">
-      <div className="flex flex-col gap-y-2 w-full">
+    <div className="mt-4 grid md:grid-cols-2 grid-cols-1  items-center gap-x-6 gap-y-4">
+      <div className="flex flex-col gap-y-2 w-full ">
         <p className="text-gray-800 font-medium text-xl">
           Team Member {id} Name{" "}
           {isRequired && <span className="text-red-500">*</span>}
@@ -29,8 +19,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="text"
           name="name"
-          value={memberData.name}
-          onChange={handleInputChange}
+          value={formData[`member${id}Name`]}
+          onChange={(e)=> handleFormChange(`member${id}Name`,e.target.value)}
           required
           placeholder={`Team Member ${id} Name`}
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -42,8 +32,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         </p>
         <Select
           name="gender"
-          value={memberData.gender}
-          onChange={handleSelectChange}
+          value={formData[`member${id}Gender`]}
+          onChange={(e)=> handleFormChange(`member${id}Gender`,e)}
           options={[
             { value: "male", label: "Male" },
             { value: "female", label: "Female" },
@@ -57,8 +47,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         </p>
         <Select
           name="year"
-          value={memberData.year}
-          onChange={handleSelectChange}
+          value={formData[`member${id}Year`]}
+          onChange={(e)=> handleFormChange(`member${id}Year`,e)}
           options={[
             { value: "1", label: "1st Year" },
             { value: "2", label: "2nd Year" },
@@ -74,8 +64,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="text"
           name="contact"
-          value={memberData.contact}
-          onChange={handleInputChange}
+          value={formData[`member${id}Contact`]}
+          onChange={(e)=> handleFormChange(`member${id}Contact`,e.target.value)}
           required
           placeholder="Contact Number"
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -88,8 +78,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="email"
           name="email"
-          value={memberData.email}
-          onChange={handleInputChange}
+          value={formData[`member${id}Email`]}
+          onChange={(e)=> handleFormChange(`member${id}Email`,e.target.value)}
           required
           placeholder="Mail Id"
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -102,8 +92,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="text"
           name="department"
-          value={memberData.department}
-          onChange={handleInputChange}
+          value={formData[`member${id}Department`]}
+          onChange={(e)=> handleFormChange(`member${id}Department`,e.target.value)}
           required
           placeholder="Department"
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -116,8 +106,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="text"
           name="college"
-          value={memberData.college}
-          onChange={handleInputChange}
+          value={formData[`member${id}College`]}
+          onChange={(e)=> handleFormChange(`member${id}College`,e.target.value)}
           required
           placeholder="College"
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -131,8 +121,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="text"
           name="city"
-          value={memberData.city}
-          onChange={handleInputChange}
+          value={formData[`member${id}City`]}
+          onChange={(e)=> handleFormChange(`member${id}City`,e.target.value)}
           required
           placeholder="Name of the City/District"
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -146,8 +136,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
         <input
           type="text"
           name="state"
-          value={memberData.state}
-          onChange={handleInputChange}
+          value={formData[`member${id}State`]}
+          onChange={(e)=> handleFormChange(`member${id}State`,e.target.value)}
           required
           placeholder="Name of the State"
           className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -172,8 +162,8 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
           ref={idRef}
           id="collegeId"
           name="collegeId"
-          value={memberData.collegeId}
-          onChange={handleInputChange}
+          value={formData[`member${id}CollegeId`]}
+          onChange={(e)=> handleFormChange(`member${id}CollegeId`,e.target.value)}
           required
           placeholder="College ID"
           className="border hidden border-gray-300 p-2 rounded-lg w-full outline-blue-500"
@@ -183,7 +173,7 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
   );
 };
 
-const renderComboPacks = ({ pack }) => {
+const RenderComboPacks = ({ pack , formData, handleFormChange }) => {
   switch (pack) {
     case "superior":
       return (
@@ -201,8 +191,8 @@ const renderComboPacks = ({ pack }) => {
                 { value: "breakthru", label: "BREAKTHRU (Problem Solving)" },
                 { value: "pixelCraft", label: "PIXEL CRAFT (UI/UX)" },
               ]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              value={formData.superiorTechnical}
+              onChange={(selectedOption) => handleFormChange("superiorTechnical",selectedOption)}
             />
           </div>
           <div className="mt-4 flex flex-col gap-y-2 w-full ">
@@ -217,8 +207,8 @@ const renderComboPacks = ({ pack }) => {
                 },
                 { value: "quizXtreme", label: "QuizXtreme ( Quiz)" },
               ]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              value={formData.superiorNonTechnical}
+              onChange={(selectedOption) => handleFormChange("superiorNonTechnical",selectedOption)}
             />
           </div>
         </div>
@@ -234,13 +224,22 @@ const renderComboPacks = ({ pack }) => {
               options={[
                 { value: "hackathon", label: "HackVision (Hackathon)" },
               ]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              value={formData.primeHackathon}
+              onChange={(selectedOption) => handleFormChange("primeHackathon",selectedOption)}
             />
           </div>
         </div>
       );
     case "elite":
+      { 
+        const options = [
+                {
+                  value: "paperLeague",
+                  label: "PAPER LEAGUE (Paper Presentation)",
+                },
+                { value: "breakthru", label: "BREAKTHRU (Problem Solving)" },
+                { value: "pixelCraft", label: "PIXEL CRAFT (UI/UX)" },
+              ];
       return (
         <div className="grid items-center grid-cols-2 gap-x-6">
           <div className="mt-4 flex flex-col gap-y-2 w-full ">
@@ -248,16 +247,9 @@ const renderComboPacks = ({ pack }) => {
               Technical 1 <span className="text-red-500">*</span>
             </p>
             <Select
-              options={[
-                {
-                  value: "paperLeague",
-                  label: "PAPER LEAGUE (Paper Presentation)",
-                },
-                { value: "breakthru", label: "BREAKTHRU (Problem Solving)" },
-                { value: "pixelCraft", label: "PIXEL CRAFT (UI/UX)" },
-              ]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              options={options}
+              value={formData.eliteTechnical1}
+              onChange={(selectedOption) => handleFormChange("eliteTechnical1",selectedOption)}
             />
           </div>
           <div className="mt-4 flex flex-col gap-y-2 w-full ">
@@ -265,20 +257,14 @@ const renderComboPacks = ({ pack }) => {
               Technical 2 <span className="text-red-500">*</span>
             </p>
             <Select
-              options={[
-                {
-                  value: "paperLeague",
-                  label: "PAPER LEAGUE (Paper Presentation)",
-                },
-                { value: "breakthru", label: "BREAKTHRU (Problem Solving)" },
-                { value: "pixelCraft", label: "PIXEL CRAFT (UI/UX)" },
-              ]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              options={options.filter((option) => option.value !== formData.eliteTechnical1.value)}
+              value={formData.eliteTechnical2}
+              onChange={(selectedOption) => handleFormChange("eliteTechnical2",selectedOption)}
             />
           </div>
         </div>
-      );
+      ); 
+    }
     case "classic":
       return (
         <div className="grid items-center grid-cols-2 gap-x-6">
@@ -295,8 +281,8 @@ const renderComboPacks = ({ pack }) => {
                 { value: "breakthru", label: "BREAKTHRU (Problem Solving)" },
                 { value: "pixelCraft", label: "PIXEL CRAFT (UI/UX)" },
               ]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              value={formData.classicTechnical}
+              onChange={(selectedOption) => handleFormChange("classicTechnical",selectedOption)}
             />
           </div>
           <div className="mt-4 flex flex-col gap-y-2 w-full ">
@@ -305,8 +291,8 @@ const renderComboPacks = ({ pack }) => {
             </p>
             <Select
               options={[{ value: "workshop", label: "Workshop" }]}
-              // value={comboPack}
-              // onChange={(selectedOption) => setComboPack(selectedOption)}
+              value={formData.classicWorkshop}
+              onChange={(selectedOption) => handleFormChange("classicWorkshop",selectedOption)}
             />
           </div>
         </div>
@@ -316,30 +302,23 @@ const renderComboPacks = ({ pack }) => {
   }
 };
 
-const renderPageComponent = ({
-  key,
-  members,
-  handleMemberChange,
-  comboPack,
+const RenderPageComponent = ({
+  page,
   onClose,
-  transactionID,
-  setTransactionID,
-  transactionProof,
-  setTransactionProof,
-  isTermsAccepted,
-  setIsTermsAccepted,
   idRef,
   handleUploadClick,
+  handleFormChange,
+  formData
 }) => {
-  switch (key) {
+  switch (page) {
     case 1:
       return (
         <TeamMemberForm
           isRequired={true}
           key={0}
           id={1}
-          memberData={members[0]}
-          onMemberChange={handleMemberChange}
+          formData={formData}
+          handleFormChange={handleFormChange}
         />
       );
     case 2:
@@ -348,8 +327,8 @@ const renderPageComponent = ({
           isRequired={true}
           key={1}
           id={2}
-          memberData={members[1]}
-          onMemberChange={handleMemberChange}
+          formData={formData}
+          handleFormChange={handleFormChange}
         />
       );
     case 3:
@@ -358,8 +337,8 @@ const renderPageComponent = ({
           isRequired={true}
           key={2}
           id={3}
-          memberData={members[2]}
-          onMemberChange={handleMemberChange}
+          formData={formData}
+          handleFormChange={handleFormChange}
         />
       );
     case 4:
@@ -368,8 +347,8 @@ const renderPageComponent = ({
           isRequired={true}
           key={3}
           id={4}
-          memberData={members[3]}
-          onMemberChange={handleMemberChange}
+          formData={formData}
+          handleFormChange={handleFormChange}
         />
       );
     case 5:
@@ -378,48 +357,50 @@ const renderPageComponent = ({
           isRequired={false}
           key={4}
           id={5}
-          memberData={members[4]}
-          onMemberChange={handleMemberChange}
+          formData={formData}
+          handleFormChange={handleFormChange}
         />
       );
     case 6:
       return (
         <div>
-          <div className="mt-4">{renderComboPacks({ pack: comboPack })}</div>
+          <div className="mt-4">
+            <RenderComboPacks pack={formData.comboPack} formData={formData} handleFormChange={handleFormChange}/>
+          </div>
           <div className="mt-4 border p-3 w-fit mx-auto rounded-lg border-gray-400 flex flex-col gap-y-2">
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">Name :</p>
               <p className="text-gray-700 font-medium text-lg">
                 BIT- Centre for Advanced studies
               </p>
             </div>
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">A/C No :</p>
               <p className="text-gray-700 font-medium text-lg">
                 911010036862582
               </p>
             </div>
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">Account Type :</p>
               <p className="text-gray-700 font-medium text-lg">
                 Savings Account
               </p>
             </div>
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">Bank :</p>
               <p className="text-gray-700 font-medium text-lg">Axis Bank</p>
             </div>
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">Branch :</p>
               <p className="text-gray-700 font-medium text-lg">
                 Sathyamangalam
               </p>
             </div>
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">IFSC Code :</p>
               <p className="text-gray-700 font-medium text-lg">UTIB0000368</p>
             </div>
-            <div className="flex flex-col items-center gap-y-2">
+            <div className="flex flex-col items-center gap-y-2 md:flex-nowrap flex-wrap">
               <p className="text-gray-900 font-bold text-lg">
                 4 Members : 4 * 450 = 1800
               </p>
@@ -428,7 +409,7 @@ const renderPageComponent = ({
               </p>
             </div>
           </div>
-          <div className="mt-4 grid items-center grid-cols-2 gap-x-6">
+          <div className="mt-4 grid items-center grid-cols-1 md:grid-cols-2 gap-x-6">
             <div className="flex flex-col gap-y-2 w-full mt-6 ">
               <p className="text-gray-800 font-medium text-xl">
                 Transaction ID <span className="text-red-500">*</span>
@@ -436,8 +417,8 @@ const renderPageComponent = ({
               <input
                 type="text"
                 placeholder="Transaction ID"
-                value={transactionID}
-                onChange={(e) => setTransactionID(e.target.value)}
+                value={formData.transactionID}
+                onChange={(e) => handleFormChange("transactionID",e.target.value)}
                 className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
               />
             </div>
@@ -456,9 +437,9 @@ const renderPageComponent = ({
                 type="file"
                 ref={idRef}
                 placeholder="Transaction Proof"
-                value={transactionProof}
-                onChange={(e) => setTransactionProof(e.target.value)}
-                className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
+                value={formData.transactionProof}
+                onChange={(e) => handleFormChange("transactionProof",e.target.value)}
+                className="border hidden border-gray-300 p-2 rounded-lg w-full outline-blue-500"
               />
             </div>
           </div>
@@ -481,7 +462,8 @@ const renderPageComponent = ({
             <input
               type="checkbox"
               id="terms"
-              onChange={(e) => setIsTermsAccepted(e.target.checked)}
+              checked={formData.termsAndCondition}
+              onChange={(e) => handleFormChange("termsAndCondition",e.target.checked ? "Accepted" : "")}
               className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
             />
             <p className="text-gray-800 font-medium text-lg">
@@ -496,8 +478,8 @@ const renderPageComponent = ({
               Cancel
             </button>
             <button
-              disabled={!isTermsAccepted}
-              className={`w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800 text-lg px-4 py-2 rounded-lg mr-2 cursor-pointer ${isTermsAccepted ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
+              disabled={!formData.termsAndCondition}
+              className={`w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800 text-lg px-4 py-2 rounded-lg mr-2 cursor-pointer ${formData.termsAndCondition ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
               onClick={() => onClose(false)}
             >
               Confirm
@@ -512,18 +494,11 @@ const renderPageComponent = ({
 
 export const ComboModal = ({ onClose }) => {
   const {
-    members,
-    handleMemberChange,
-    teamName,
-    setTeamName,
-    comboPack,
-    transactionID,
-    setTransactionID,
-    transactionProof,
-    setTransactionProof,
-    resetMembers,
+    formData,
+    handleFormChange,
+    resetFormData
   } = useComboStore();
-  console.log(members);
+  console.log(formData);
 
   const idRef = React.useRef(null);
   const handleUploadClick = () => {
@@ -531,24 +506,23 @@ export const ComboModal = ({ onClose }) => {
   };
 
   React.useEffect(() => {
-    resetMembers();
-  }, [resetMembers, comboPack]);
+    resetFormData();
+  }, [resetFormData, formData.comboPack]);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [isTermsAccepted, setIsTermsAccepted] = React.useState(false);
   function handlePageSize(pos, newPage) {
       if (newPage < 7 && newPage > 0) {
         setCurrentPage(newPage);
       }
   }
   return (
-    <div className="inset-0 fixed bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg p-10 max-w-5xl w-full h-[calc(100vh-8rem)] overflow-y-auto">
+    <div className="inset-0 z-50  fixed bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-lg p-10 max-w-5xl w-full h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar">
         <div className="flex items-center justify-between">
-          <p className="text-center  text-3xl font-semibold text-gray-800">
+          <p className="md:text-center text-lg  mg:text-3xl font-semibold text-gray-800">
             Register for Celesta'25
           </p>
           <button
-            className=" bg-gradient-to-br from-green-400 to-blue-600 text-white hover:bg-gradient-to-bl focus:ring-green-200 dark:focus:ring-green-800 text-lg px-6 py-1 rounded-lg cursor-pointer"
+            className=" bg-gradient-to-br from-green-400 to-blue-600 text-white hover:bg-gradient-to-bl focus:ring-green-200 dark:focus:ring-green-800 text-sm px-2 py-0.5 md:text-lg md:px-6 md:py-1 rounded-lg cursor-pointer"
             onClick={() => onClose(false)}
           >
             Close
@@ -561,26 +535,12 @@ export const ComboModal = ({ onClose }) => {
           <input
             type="text"
             placeholder="Team Name"
-            value={teamName}
-            onChange={(e) => setTeamName(e.target.value)}
+            value={formData.teamName}
+            onChange={(e) => handleFormChange("teamName",e.target.value)}
             className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
           />
         </div>
-        {renderPageComponent({
-          key: currentPage,
-          members,
-          handleMemberChange,
-          comboPack,
-          onClose,
-          transactionID,
-          setTransactionID,
-          transactionProof,
-          setTransactionProof,
-          isTermsAccepted,
-          setIsTermsAccepted,
-          idRef,
-          handleUploadClick,
-        })}
+        <RenderPageComponent page={currentPage} onClose={onClose} idRef={idRef} handleUploadClick={handleUploadClick} formData={formData} handleFormChange={handleFormChange}/>
         {currentPage > 0 && currentPage < 6 && (
           <div className="mt-4 flex items-center justify-between">
             <CircleArrowLeft
