@@ -1,37 +1,80 @@
 import { create } from "zustand";
 
-const initialMemberState = {
-  name: "",
-  gender: "", // Use null for react-select to show placeholder
-  year: "",
-  contact: "",
-  email: "",
-  department: "",
-  college: "",
-  city: "",
-  state: "",
-  collegeId: "",
+const initialFormState = {
+  email:"",
+  teamName: "",
+  member1Name:"",
+  member1Gender:"",
+  member1Year:"",
+  member1Contact:"",
+  member1MailId:"",
+  member1Department:"",
+  member1College:"",
+  member1CollegeId:"",
+  member1City:"",
+  member1State:"",
+  member2Name:"",
+  member2Gender:"",
+  member2Year:"",
+  member2Contact:"",
+  member2MailId:"",
+  member2Department:"",
+  member2College:"",
+  member2CollegeId:"",
+  member2City:"",
+  member2State:"",
+  member3Name:"",
+  member3Gender:"",
+  member3Year:"",
+  member3Contact:"",
+  member3MailId:"",
+  member3Department:"",
+  member3College:"",
+  member3CollegeId:"",
+  member3City:"",
+  member3State:"",
+  member4Name:"",
+  member4Gender:"",
+  member4Year:"",
+  member4Contact:"",
+  member4MailId:"",
+  member4Department:"",
+  member4College:"",
+  member4CollegeId:"",
+  member4City:"",
+  member4State:"",
+  member5Name:"",
+  member5Gender:"",
+  member5Year:"",
+  member5Contact:"",
+  member5MailId:"",
+  member5Department:"",
+  member5College:"",
+  member5CollegeId:"",
+  member5City:"",
+  member5State:"",
+  comboPack:"",
+  transactionId:"",
+  transactionProof:"",
+  superiorTechnical:"",
+  superiorNonTechnical:"",
+  primeHackathon:"",
+  eliteTechnical1:"",
+  eliteTechnical2:"",
+  classicTechnical:"",
+  classicWorkshop:"",
 };
 
-export const useComboStore = create((set) => ({
-  teamName: "",
-  comboPack: "",
-  transactionId: "",
-  transactionProof: "",
-  members: Array.from({ length: 5 }, () => ({ ...initialMemberState })),
-  setTransactionId: (transactionId) => set({ transactionId }),
-  setTransactionProof: (transactionProof) => set({ transactionProof }),
-  setTeamName: (teamName) => set({ teamName }),
-  setComboPack: (comboPack) => set({ comboPack }),
-  resetMembers: () =>
+export const useComboStore = create((set,get) => ({
+  formData: initialFormState,
+  handleFormChange: (key,value) => {
+    const { formData } = get();
     set({
-      members: Array.from({ length: 5 }, () => ({ ...initialMemberState })),
-    }),
-  setMembers: (members) => set({ members }),
-  handleMemberChange: (index, field, value) =>
-    set((state) => {
-      const members = [...state.members];
-      members[index - 1] = { ...members[index - 1], [field]: value };
-      return { members };
-    }),
+      formData: {...formData , [key]:value },
+    })
+  },
+  createForm: () => {},
+  resetFormData: () => {
+    set({formData: initialFormState});
+  },
 }));

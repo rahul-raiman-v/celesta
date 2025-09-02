@@ -2,7 +2,6 @@ import React from "react";
 import Select from "react-select";
 import { useComboStore } from "../../../store";
 import { CircleArrowLeft, CircleArrowRight, Upload } from "lucide-react";
-import toast from "react-hot-toast";
 
 const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
   // Handles changes for standard text inputs
@@ -160,13 +159,13 @@ const TeamMemberForm = ({ memberData, onMemberChange, id, isRequired }) => {
           {isRequired && <span className="text-red-500">*</span>}
         </p>
         <div className="relative">
-          <div
+          <button
             className="border px-3 py-1 rounded-md flex items-center gap-x-2 w-fit cursor-pointer"
             onClick={handleUploadClick}
           >
             <Upload className="size-6 text-blue-600" />
             <p className="text-blue-600 font-medium text-lg">Add File</p>
-          </div>
+          </button>
         </div>
         <input
           type="file"
@@ -446,13 +445,13 @@ const renderPageComponent = ({
               <p className="text-gray-800 font-medium text-xl">
                 Transaction Proof <span className="text-red-500">*</span>
               </p>
-              <div
+              <button
                 className="border px-3 py-1 rounded-md flex items-center gap-x-2 w-fit cursor-pointer"
                 onClick={handleUploadClick}
               >
                 <Upload className="size-6 text-blue-600" />
                 <p className="text-blue-600 font-medium text-lg">Add File</p>
-              </div>
+              </button>
               <input
                 type="file"
                 ref={idRef}
@@ -537,30 +536,9 @@ export const ComboModal = ({ onClose }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [isTermsAccepted, setIsTermsAccepted] = React.useState(false);
   function handlePageSize(pos, newPage) {
-    if (pos === "next") {
-      if (newPage < 7 && newPage > 0) {
-        if (
-          members[currentPage - 1].name === "" ||
-          members[currentPage - 1].gender === "" ||
-          members[currentPage - 1].year === "" ||
-          members[currentPage - 1].contact === "" ||
-          members[currentPage - 1].email === "" ||
-          members[currentPage - 1].department === "" ||
-          members[currentPage - 1].college === "" ||
-          members[currentPage - 1].city === "" ||
-          members[currentPage - 1].state === "" ||
-          members[currentPage - 1].collegeId === ""
-        ) {
-          toast.error("Please fill all fields");
-        } else {
-          setCurrentPage(newPage);
-        }
-      }
-    } else {
       if (newPage < 7 && newPage > 0) {
         setCurrentPage(newPage);
       }
-    }
   }
   return (
     <div className="inset-0 fixed bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">

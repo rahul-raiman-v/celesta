@@ -5,7 +5,7 @@ export function Header() {
   const router = useNavigate();
   const user = false;
   return (
-    <div className="p-6 bg-white sticky top-0 backdrop-blur-lg">
+    <div className="p-6 bg-white sticky z-50 top-0 backdrop-blur-lg">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
           <img
