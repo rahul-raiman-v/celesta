@@ -139,7 +139,7 @@ export const EventsStore = create((set) => ({
           venue: 'BIT Campus',
           img: 'https://res.cloudinary.com/dbyxgnjkw/image/upload/v1756635369/ui_ux_qefri7.png',
           brochureLink:
-            'https://drive.google.com/uc?export=download&id=1xEhTtOuqf0u93K5_dJtfb87jmbyrE3XY',
+            'https://drive.google.com/uc?export=download&id=1Z0pyn1zIN40Vaw2Kxi_EwxbzfVdsAea-',
           highlight: true,
           tabs: [
             {
@@ -154,7 +154,12 @@ export const EventsStore = create((set) => ({
                 {
                   id: '1',
                   title: 'Round 1',
-                  content: 'Presentation Round',
+                  content: 'Designing of wireframe',
+                },
+                {
+                  id: '2',
+                  title: 'Round 2',
+                  content: 'Designing of UI in Figma',
                 },
               ],
             },
@@ -172,7 +177,7 @@ export const EventsStore = create((set) => ({
                   id: '2',
                   title: 'Rule 2',
                   content:
-                    'Participants must choose the theme on-spot and prepare a PowerPoint presentation.',
+                    'Be on time – late entries will not be accepted.',
                 },
                 {
                   id: '3',
@@ -205,7 +210,7 @@ export const EventsStore = create((set) => ({
                     'Any disputes will be resolved by the judging panel, and their decision will be final.',
                 },
               ],
-            }, //Rules completed
+            },
             {
               id: 'rewards',
               title: 'Rewards',
@@ -268,7 +273,7 @@ export const EventsStore = create((set) => ({
           venue: 'BIT Campus',
           img: 'https://res.cloudinary.com/dsz2br3qg/image/upload/v1755236006/BreakThroughImg_z0jjf9.jpg',
           brochureLink:
-            'https://drive.google.com/uc?export=download&id=13iWqZyk9qgn_mj18umZV1c3Q1WWUtpG_',
+            'https://drive.google.com/uc?export=download&id=1wjPhi5OJyS6ucSQWmx0APLdV26J5PlTL',
           highlight: true,
           tabs: [
             {
@@ -415,7 +420,7 @@ export const EventsStore = create((set) => ({
             venue: 'BIT Campus',
             img: 'https://res.cloudinary.com/dsz2br3qg/image/upload/v1755446896/ChatGPT_Image_Aug_14__2025__11_46_10_AM_1_i90vu5.png',
             brochureLink:
-                'https://drive.google.com/uc?export=download&id=1N1dPZccfe98wYlJHanYtMj4vN1FewWDI',
+                'https://drive.google.com/uc?export=download&id=172DB5JpIoZrpyHbErdyPPTY7vJ2nBVda',
             highlight: true,
             tabs: [
                 {
@@ -432,13 +437,13 @@ export const EventsStore = create((set) => ({
                     id: '1',
                     title: 'Round 1',
                     content:
-                        'Teams compete in the first round. Follow time limits and instructions.',
+                        '[Written] Teams attempt a set of written questions to qualify for the next stage.',
                     },
                     {
                     id: '2',
                     title: 'Round 2',
                     content:
-                        'Teams present in the final round. Adhere to preparation and presentation rules.',
+                        'Two members from each team faces off in a fast-paced buzzer quiz, where quick thinking decides the winner.',
                     },
                 ],
                 },
@@ -473,6 +478,18 @@ export const EventsStore = create((set) => ({
                     {
                     id: '5',
                     title: 'Rule 5',
+                    content:
+                        'Top teams with the highest scores will move to next rounds.',
+                    },
+                    {
+                    id: '6',
+                    title: 'Rule 6',
+                    content:
+                        'In case of a tie, tie-breaker questions will be asked.',
+                    },
+                    {
+                    id: '7',
+                    title: 'Rule 7',
                     content:
                         'Any disputes will be resolved by the judging panel and their decision will be final.',
                     },
@@ -540,7 +557,7 @@ export const EventsStore = create((set) => ({
           venue: 'BIT Campus',
           img: 'https://res.cloudinary.com/dsz2br3qg/image/upload/v1755236010/GuessInGlanceImg_zxtfq5.jpg',
           brochureLink:
-            'https://drive.google.com/uc?export=download&id=11mQUgy5wm-nFdtjrKmp43m2pEuNZ1_hN',
+            'https://drive.google.com/uc?export=download&id=1UzvJ7ToZh4wET_DEMjXHCm6xGTSUzozr',
           highlight: true,
           tabs: [
             {
@@ -675,7 +692,7 @@ export const EventsStore = create((set) => ({
           venue: 'BIT Campus',
           img: 'https://res.cloudinary.com/dsz2br3qg/image/upload/v1755236015/VisionHackImg_ntfdbg.jpg',
           brochureLink:
-            'https://drive.google.com/uc?export=download&id=1OmXxEo7JImawGBr9NrxqogMpM86fLYiu',
+            'https://drive.google.com/uc?export=download&id=1oxLYfSQ3LHnvkso7a-LNdm47yxn2e5kA',
           // problemLink:
           //   'https://drive.google.com/uc?export=download&id=1qtL1Lcn_eVOlgIf4WI8bk0g5klGbW_Mc',
           highlight: true,
@@ -801,14 +818,6 @@ export const EventsStore = create((set) => ({
                 },
                 {
                   id: 'person3',
-                  name: 'Mithunram SU',
-                  designation: 'Co-Ordinator',
-                  email: 'person3@example.com',
-                  phone: '+91 9488906451',
-                  img: 'https://via.placeholder.com/150',
-                },
-                {
-                  id: 'person3',
                   name: 'Harish',
                   designation: 'Co-Ordinator',
                   email: 'person3@example.com',
@@ -835,14 +844,14 @@ export const EventsStore = create((set) => ({
           date: 'September 26, 2025',
           venue: 'BIT Campus',
           brochureLink:
-            'https://drive.google.com/uc?export=download&id=1p1zoVgGq30k_8IQwt88hR9djsMP5ur9Q',
+            'https://drive.google.com/uc?export=download&id=1PSox6lMKKK_DfBmcJ--sF2XQ48RtLuNV',
           highlight: true,
           tabs: [
             {
               id: 'description',
               title: 'Description',
               content:
-                'The Workshop is a hands-on learning session to give participants practical exposure to the latest technologies and industry trends Guided by expert4 it focuses interactive training real-time demonstrations,and activities that go beyond classroom learning. The session aims to equip students with valuable and knowledge, helping them stay ahead in the evolving tech landscape. Sparks into successful ventures, Transforming innovative ideas into protected, market-ready businesses through design thinking and smart IP strategies.',
+                'The Workshop at Celesta ’25 is a hands-on learning session designed to give participants practical exposure to the latest technologies and industry trends. Guided by experts, helping them stay ahead in the evolving tech landscape.',
             },
             {
               id: 'prerequisites',
@@ -881,10 +890,10 @@ export const EventsStore = create((set) => ({
                 // },
                 {
                   id: 'person2',
-                  name: 'Hari Hara Sudhan',
+                  name: 'Surya Narayana B G',
                   designation: 'Co-Ordinator',
                   email: 'person2@example.com',
-                  phone: '+91 8870731577',
+                  phone: '+91 8610668737',
                   img: 'https://via.placeholder.com/150',
                 },
                 {
