@@ -208,7 +208,7 @@ export function EventCard({
                 key={tab.id || tab.title}
                 className={`px-4 py-2 rounded-lg cursor-pointer text-sm font-medium transition-all duration-300 ${
                   activeTab === tab.title
-                    ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md transform scale-105'
+                    ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
                     : 'border border-gray-300 text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:border-purple-300'
                 }`}
                 onClick={() => setActiveTab(tab.title)}

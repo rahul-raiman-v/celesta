@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import React from "react";
 import { useShallow } from "zustand/react/shallow";
 import { EventsStore } from "../../store";
 import { EventCard } from "../../components/cards";
@@ -8,11 +7,11 @@ import { Search } from "lucide-react";
 
 // Custom hook for search functionality
 const useEventSearch = (allEvents) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const searchTimeoutRef = useRef(null);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState([]);
+  const searchTimeoutRef = React.useRef(null);
 
-  const handleSearch = useCallback((query) => {
+  const handleSearch = React.useCallback((query) => {
     setSearchQuery(query);
     
     // Clear previous timeout
@@ -66,13 +65,13 @@ const useEventSearch = (allEvents) => {
     }, 300); // 300ms debounce
   }, [allEvents]);
 
-  const clearSearch = useCallback(() => {
+  const clearSearch = React.useCallback(() => {
     setSearchQuery("");
     setSearchResults([]);
   }, []);
 
   // Cleanup timeout on unmount
-  useEffect(() => {
+  React.useEffect(() => {
     return () => {
       if (searchTimeoutRef.current) {
         clearTimeout(searchTimeoutRef.current);
@@ -85,7 +84,7 @@ const useEventSearch = (allEvents) => {
 
 // Custom hook for outside click detection
 const useOutsideClick = (ref, callback) => {
-  useEffect(() => {
+  React.useEffect(() => {
     const handleClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         callback();
@@ -99,11 +98,11 @@ const useOutsideClick = (ref, callback) => {
 
 export default function EventsPage() {
   const stats = EventsStore(useShallow((s) => s.events));
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const searchRef = useRef(null);
+  const [selectedCategory, setSelectedCategory] = React.useState(null);
+  const searchRef = React.useRef(null);
 
   // Memoize flattened events to prevent unnecessary recalculations
-  const allEventsAugmented = useMemo(() => 
+  const allEventsAugmented = React.useMemo(() => 
     stats.flatMap((category) =>
       category.events.map((event) => ({
         ...event,
@@ -125,7 +124,7 @@ export default function EventsPage() {
   useOutsideClick(searchRef, clearSearch);
 
   // Categories with "All" option
-  const statsWithAll = useMemo(() => [
+  const statsWithAll = React.useMemo(() => [
     {
       id: "all",
       title: "All",
@@ -153,13 +152,13 @@ export default function EventsPage() {
   ], [stats, allEventsAugmented]);
 
   // Set default category to "All"
-  useEffect(() => {
+  React.useEffect(() => {
     if (statsWithAll.length > 0 && !selectedCategory) {
       setSelectedCategory(statsWithAll[0]);
     }
   }, [statsWithAll, selectedCategory]);
 
-  const goToEvent = useCallback((eventId) => {
+  const goToEvent = React.useCallback((eventId) => {
     const el = document.getElementById(`event-${eventId}`);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -167,7 +166,7 @@ export default function EventsPage() {
     clearSearch();
   }, [clearSearch]);
 
-  const handleCategorySelect = useCallback((category) => {
+  const handleCategorySelect = React.useCallback((category) => {
     setSelectedCategory(category);
     clearSearch(); // Clear search when switching categories
   }, [clearSearch]);
@@ -180,7 +179,7 @@ export default function EventsPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-600">
+    <div className="min-h-screen w-full bg-gradient-blue">
       {/* Category Cards */}
       <div className="w-full max-w-7xl mx-auto mb-8 sm:mb-12 lg:mb-16 px-4 sm:px-6 lg:px-8 pt-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
