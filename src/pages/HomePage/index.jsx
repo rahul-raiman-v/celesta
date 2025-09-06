@@ -239,7 +239,7 @@ const EventHighlights = () => {
               </svg>
             </div>
             <h3 className="text-2xl font-bold mb-3">VISIONHACK</h3>
-            <p className="text-gray-400">
+            <p className="text-gray-700">
               An intense 6-hour coding marathon where teams brainstorm, design,
               and develop innovative solutions to real-world problems.
             </p>
@@ -265,7 +265,7 @@ const EventHighlights = () => {
               </svg>
             </div>
             <h3 className="text-2xl font-bold mb-3">Paper League</h3>
-            <p className="text-gray-400">
+            <p className="text-gray-700">
               Showcase your innovative ideas and research. Present technical
               papers on trending topics to a panel of experts and peers.
             </p>
@@ -288,7 +288,7 @@ const EventHighlights = () => {
               </svg>
             </div>
             <h3 className="text-2xl font-bold mb-3">Pixel Craft</h3>
-            <p className="text-gray-400">
+            <p className="text-gray-700">
               A creative UI/UX challenge to design intuitive and visually
               appealing user interfaces. Emphasizes creativity and user-centered
               thinking.
