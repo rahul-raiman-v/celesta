@@ -257,7 +257,7 @@ const RenderComboPacks = ({ pack , formData, handleFormChange }) => {
               Technical 2 <span className="text-red-500">*</span>
             </p>
             <Select
-              options={options.filter((option) => option.value !== formData.eliteTechnical1.value)}
+              options={options.filter((option) => option?.value !== formData?.eliteTechnical1?.value)}
               value={formData.eliteTechnical2}
               onChange={(selectedOption) => handleFormChange("eliteTechnical2",selectedOption)}
             />
@@ -308,7 +308,8 @@ const RenderPageComponent = ({
   idRef,
   handleUploadClick,
   handleFormChange,
-  formData
+  formData,
+  createForm
 }) => {
   switch (page) {
     case 1:
@@ -480,9 +481,12 @@ const RenderPageComponent = ({
             <button
               disabled={!formData.termsAndCondition}
               className={`w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800 text-lg px-4 py-2 rounded-lg mr-2 cursor-pointer ${formData.termsAndCondition ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
-              onClick={() => onClose(false)}
+              onClick={() => {
+                createForm();
+                onClose(false)
+                }}
             >
-              Confirm
+              Submit Form
             </button>
           </div>
         </div>
@@ -493,21 +497,18 @@ const RenderPageComponent = ({
 };
 
 export const ComboModal = ({ onClose }) => {
-  const {
-    formData,
-    handleFormChange,
-    resetFormData
-  } = useComboStore();
+  
+  const formData = useComboStore((state) => state.formData);
+  const handleFormChange = useComboStore((state) => state.handleFormChange);
+  const createForm = useComboStore((state) => state.createForm);
+
   console.log(formData);
 
   const idRef = React.useRef(null);
   const handleUploadClick = () => {
     idRef.current?.click();
   };
-
-  React.useEffect(() => {
-    resetFormData();
-  }, [resetFormData, formData.comboPack]);
+  
   const [currentPage, setCurrentPage] = React.useState(1);
   function handlePageSize(pos, newPage) {
       if (newPage < 7 && newPage > 0) {
@@ -540,7 +541,7 @@ export const ComboModal = ({ onClose }) => {
             className="border border-gray-300 p-2 rounded-lg w-full outline-blue-500"
           />
         </div>
-        <RenderPageComponent page={currentPage} onClose={onClose} idRef={idRef} handleUploadClick={handleUploadClick} formData={formData} handleFormChange={handleFormChange}/>
+        <RenderPageComponent page={currentPage} onClose={onClose} idRef={idRef} handleUploadClick={handleUploadClick} formData={formData} handleFormChange={handleFormChange} createForm={createForm}/>
         {currentPage > 0 && currentPage < 6 && (
           <div className="mt-4 flex items-center justify-between">
             <CircleArrowLeft

@@ -10,7 +10,7 @@ export const ComboPackCard = ({
   price,
   isPopular = false,
 }) => {
-  const { handleFormChange } = useComboStore();
+  const handleFormChange = useComboStore(s => s.handleFormChange);
   return (
     <div
       className={`relative rounded-xl shadow-lg p-8 flex flex-col backdrop-blur-3xl bg-white  max-w-sm w-full ${isPopular ? " !bg-blue-600" : ""}`}
@@ -41,6 +41,7 @@ export const ComboPackCard = ({
       <button
         onClick={() => {
           onOpen(true);
+          console.log(id);
           handleFormChange("comboPack",id);
         }}
         className={`mt-auto cursor-pointer text-center w-full bg-indigo-100 text-indigo-600 font-bold py-3 px-6 rounded-lg hover:bg-indigo-200 transition duration-300 shadow-lg text-lg ${isPopular && "bg-white !text-blue-600 hover:opacity-90 hover:bg-white"}`}

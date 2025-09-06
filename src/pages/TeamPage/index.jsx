@@ -105,7 +105,7 @@ export default function TeamPage() {
         <p className="text-3xl text-gray-900 font-semibold text-center ">
           Student Co-Ordinators
         </p>
-        <div className="flex flex-wrap gap-5 items-center justify-center ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 items-center justify-center ">
           {studentCoordinators.map((member) => (
             <TeamCard key={member.id} {...member} />
           ))}

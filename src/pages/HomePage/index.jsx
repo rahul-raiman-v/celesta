@@ -81,7 +81,7 @@ const HeroSection = () => {
         {/* Countdown Timer: Conditionally renders the timer or a "Live" message */}
         <div
           id="countdown"
-          className="flex justify-center gap-4 md:gap-8 mb-8 text-center"
+          className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 text-center"
         >
           {timeLeft.isLive ? (
             <div className="text-4xl md:text-5xl font-bold text-green-400">
