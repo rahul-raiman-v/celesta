@@ -342,7 +342,7 @@ const ContactSection = () => {
             </p>
             <div className="flex gap-5 flex-wrap">
               <a
-                href="https://www.instagram.com/lifeatbit?igsh=MW8wdjV1ZGloejV1MQ=="
+                href="https://www.instagram.com/codecirclebit/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-tr from-pink-500 to-red-500 text-white p-4 rounded-full shadow-lg hover:shadow-pink-300 transition-all duration-300"
@@ -356,7 +356,7 @@ const ContactSection = () => {
                 <Twitter size={24} />
               </a> */}
               <a
-                href="https://www.linkedin.com/school/bitsathyindia/posts/?feedView=all"
+                href="https://www.linkedin.com/company/bitcodecircle/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-tr from-blue-700 to-indigo-900 text-white p-4 rounded-full shadow-lg hover:shadow-indigo-300 transition-all duration-300"
