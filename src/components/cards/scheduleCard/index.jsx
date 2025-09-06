@@ -1,7 +1,7 @@
 import React from "react";
 import { PaperPresentationImg } from "../../../assets";
 
-export const ScheduleCard = ({ time, title, description }) => {
+export const ScheduleCard = ({ time, title, description, src }) => {
   return (
     <div className="flex flex-col lg:flex-row items-center md:justify-between border gap-x-8 gap-y-4 border-gray-300 p-6 rounded-lg shadow-md bg-white">
       <div className=" flex md:flex-row flex-col items-center gap-y-4 gap-x-8">
@@ -14,7 +14,12 @@ export const ScheduleCard = ({ time, title, description }) => {
           <p className="md:text-lg font-medium text-gray-600">{description}</p>
         </div>
       </div>
-      <div className="aspect-video w-full lg:w-80 shadow-lg h-full shrink-0 border border-gray-400 rounded-lg"></div>
+      <img
+        src={src}
+        alt={title}
+        loading="lazy"
+        className="aspect-video w-full lg:w-80 shadow-lg h-full shrink-0 border border-gray-400 rounded-lg"
+      />
     </div>
   );
 };

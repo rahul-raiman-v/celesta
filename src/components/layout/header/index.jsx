@@ -1,12 +1,12 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import React from "react";
+import { useLocation, useNavigate } from "react-router";
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Schedule', path: '/schedule' },
-  { name: 'Events', path: '/events' },
-  { name: 'Combos', path: '/combo' },
-  { name: 'Team', path: '/team' },
+  { name: "Home", path: "/" },
+  { name: "Schedule", path: "/schedule" },
+  { name: "Events", path: "/events" },
+  { name: "Combos", path: "/combo" },
+  { name: "Team", path: "/team" },
 ];
 
 export const Header = () => {
@@ -21,44 +21,44 @@ export const Header = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Close mobile menu when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isMenuOpen && !event.target.closest('header')) {
+      if (isMenuOpen && !event.target.closest("header")) {
         setIsMenuOpen(false);
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [isMenuOpen]);
 
   // Close mobile menu on escape key
   React.useEffect(() => {
     const handleEscapeKey = (event) => {
-      if (event.key === 'Escape' && isMenuOpen) {
+      if (event.key === "Escape" && isMenuOpen) {
         setIsMenuOpen(false);
       }
     };
 
-    document.addEventListener('keydown', handleEscapeKey);
-    return () => document.removeEventListener('keydown', handleEscapeKey);
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => document.removeEventListener("keydown", handleEscapeKey);
   }, [isMenuOpen]);
 
   // Prevent body scroll when mobile menu is open
   React.useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
 
@@ -69,17 +69,17 @@ export const Header = () => {
 
   const handleRegistration = () => {
     // You can navigate to a registration page or open a modal
-    navigate('/combo');
+    navigate("/combo");
     setIsMenuOpen(false);
   };
 
   const isActive = (path) => {
     // Handle exact match for home page
-    if (path === '/' && location.pathname === '/') {
+    if (path === "/" && location.pathname === "/") {
       return true;
     }
     // Handle other routes (including nested routes)
-    if (path !== '/' && location.pathname.startsWith(path)) {
+    if (path !== "/" && location.pathname.startsWith(path)) {
       return true;
     }
     return false;
@@ -90,8 +90,8 @@ export const Header = () => {
       <header
         className={`sticky top-0 z-50 w-full duration-300 bg-white ${
           isScrolled
-            ? 'bg-white/80 backdrop-blur-xl border-b border-pink-200/60 shadow-lg'
-            : 'bg-gradient-to-r from-white/70 via-pink-50/50 to-purple-50/50 backdrop-blur-lg border-b border-pink-100/40'
+            ? "bg-white/80 backdrop-blur-xl border-b border-pink-200/60 shadow-lg"
+            : "bg-gradient-to-r from-white/70 via-pink-50/50 to-purple-50/50 backdrop-blur-lg border-b border-pink-100/40"
         }`}
       >
         <div className=" mx-auto px-4 py-4 ">
@@ -115,7 +115,6 @@ export const Header = () => {
                 className="h-13 hidden lg:block rounded-full"
                 loading="lazy"
               />
-              
             </div>
 
             {/* Logo with enhanced hover effect */}
@@ -128,15 +127,15 @@ export const Header = () => {
                   onClick={() => handleNavigate(link.path)}
                   className={`cursor-pointer relative transition-all duration-300 hover:scale-105 text-lg px-4 py-3 ${
                     isActive(link.path)
-                      ? 'text-pink-600 font-bold '
-                      : 'text-slate-600 font-semibold '
+                      ? "text-pink-600 font-bold "
+                      : "text-slate-600 font-semibold "
                   } group`}
-                  aria-current={isActive(link.path) ? 'page' : undefined}
+                  aria-current={isActive(link.path) ? "page" : undefined}
                 >
                   {link.name}
                   <span
                     className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 transition-all duration-300 ${
-                      isActive(link.path) ? 'w-3/4' : 'group-hover:w-3/4'
+                      isActive(link.path) ? "w-3/4" : "group-hover:w-3/4"
                     }`}
                   ></span>
                 </button>
@@ -173,17 +172,17 @@ export const Header = () => {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="cursor-pointer relative w-12 h-12 flex flex-col items-center justify-center focus:outline-none group rounded-xl hover:bg-pink-50 transition-colors duration-300"
-                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
               >
                 <span
-                  className={`block absolute w-6 h-0.5 bg-slate-500 transform transition duration-500 ease-in-out ${isMenuOpen ? 'rotate-45 translate-y-0 group-hover:bg-pink-500' : '-translate-y-2 group-hover:bg-pink-500'}`}
+                  className={`block absolute w-6 h-0.5 bg-slate-500 transform transition duration-500 ease-in-out ${isMenuOpen ? "rotate-45 translate-y-0 group-hover:bg-pink-500" : "-translate-y-2 group-hover:bg-pink-500"}`}
                 />
                 <span
-                  className={`block absolute w-6 h-0.5 bg-slate-500 transform transition duration-500 ease-in-out ${isMenuOpen ? 'opacity-0' : 'opacity-100 group-hover:bg-pink-500'}`}
+                  className={`block absolute w-6 h-0.5 bg-slate-500 transform transition duration-500 ease-in-out ${isMenuOpen ? "opacity-0" : "opacity-100 group-hover:bg-pink-500"}`}
                 />
                 <span
-                  className={`block absolute w-6 h-0.5 bg-slate-500 transform transition duration-500 ease-in-out ${isMenuOpen ? '-rotate-45 translate-y-0 group-hover:bg-pink-500' : 'translate-y-2 group-hover:bg-pink-500'}`}
+                  className={`block absolute w-6 h-0.5 bg-slate-500 transform transition duration-500 ease-in-out ${isMenuOpen ? "-rotate-45 translate-y-0 group-hover:bg-pink-500" : "translate-y-2 group-hover:bg-pink-500"}`}
                 />
               </button>
             </div>
@@ -192,7 +191,7 @@ export const Header = () => {
           {/* Enhanced Mobile menu with beautiful styling */}
           <div
             className={`xxl:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] rounded-3xl ${
-              isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+              isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
             }`}
           >
             <nav className="mt-6 rounded-3xl p-6 bg-gradient-to-br from-white/95 via-pink-50/80 to-purple-50/80 border border-pink-200/60 shadow-xl backdrop-blur-sm">
@@ -203,15 +202,15 @@ export const Header = () => {
                     onClick={() => handleNavigate(link.path)}
                     className={`cursor-pointer block w-full text-left py-4 px-6 rounded-2xl transition-all duration-300 focus:outline-none ${
                       isActive(link.path)
-                        ? 'text-pink-600 font-bold bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200 shadow-md'
-                        : 'text-slate-600 hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 font-medium'
+                        ? "text-pink-600 font-bold bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200 shadow-md"
+                        : "text-slate-600 hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 font-medium"
                     }`}
                     style={{
                       animation: isMenuOpen
                         ? `fadeInUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) ${index * 70}ms both`
-                        : 'none',
+                        : "none",
                     }}
-                    aria-current={isActive(link.path) ? 'page' : undefined}
+                    aria-current={isActive(link.path) ? "page" : undefined}
                   >
                     <div className="flex items-center justify-between">
                       <span className="flex items-center">
@@ -219,8 +218,8 @@ export const Header = () => {
                           <span
                             className={`mr-3 text-lg ${
                               isActive(link.path)
-                                ? 'text-pink-500'
-                                : 'text-slate-400'
+                                ? "text-pink-500"
+                                : "text-slate-400"
                             }`}
                           >
                             {link.icon}
@@ -240,15 +239,14 @@ export const Header = () => {
               <div className="flex max-sm:flex-col max-sm:items-center max-sm:justify-center max-sm:space-y-4 flex-row gap-x-4 mt-4">
                 <button
                   onClick={handleRegistration}
-                  disabled
                   className="cursor-pointer bg-gradient-to-r w-full from-pink-400 via-purple-500 to-indigo-500 text-white py-4 px-6 rounded-2xl font-bold hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-pink-200 shadow-lg hover:shadow-xl active:scale-95 transform hover:-translate-y-0.5"
                   style={{
                     animation: isMenuOpen
                       ? `fadeInUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) ${navLinks.length * 70}ms both`
-                      : 'none',
+                      : "none",
                   }}
                 >
-                  <span className="flex items-center justify-center opacity-50">
+                  <span className="flex items-center justify-center">
                     Register Now
                     <span className="ml-2 inline-block animate-bounce">
                       <svg
@@ -268,14 +266,8 @@ export const Header = () => {
                   </span>
                 </button>
                 <button
-                  className="cursor-pointer opacity-50 hover:opacity-50 bg-gradient-to-r w-full  from-orange-500 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold  hover:scale-105 transition-all duration-300  shadow-md flex justify-center items-center"
-                  disabled
-                  onClick={() =>
-                    window.open(
-                      'https://drive.google.com/uc?export=download&id=1tMlLhWWiiGdR7iWgtxzn2x03H8ER-Oyz',
-                      '_blank'
-                    )
-                  }
+                  className="cursor-pointer hover:opacity-50 bg-gradient-to-r w-full  from-orange-500 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold  hover:scale-105 transition-all duration-300  shadow-md flex justify-center items-center"
+                  onClick={() => {}}
                 >
                   Download Brochure
                 </button>

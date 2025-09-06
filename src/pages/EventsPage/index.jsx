@@ -11,59 +11,62 @@ const useEventSearch = (allEvents) => {
   const [searchResults, setSearchResults] = React.useState([]);
   const searchTimeoutRef = React.useRef(null);
 
-  const handleSearch = React.useCallback((query) => {
-    setSearchQuery(query);
-    
-    // Clear previous timeout
-    if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current);
-    }
+  const handleSearch = React.useCallback(
+    (query) => {
+      setSearchQuery(query);
 
-    // Debounce search
-    searchTimeoutRef.current = setTimeout(() => {
-      if (!query.trim()) {
-        setSearchResults([]);
-        return;
+      // Clear previous timeout
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
       }
 
-    // Normalizes a field into a string
-    const normalizeField = (field) => {
-      if (typeof field === "string") return field;
-      if (typeof field === "object" && field !== null) {
-        return Object.values(field).join(" ");
-      }
-      return "";
-    };
+      // Debounce search
+      searchTimeoutRef.current = setTimeout(() => {
+        if (!query.trim()) {
+          setSearchResults([]);
+          return;
+        }
 
-    // Extracts fields from a single tab
-    const getTabFields = (tab) => {
-    if (!tab?.content) return [];
-    if (Array.isArray(tab.content)) {
-      return tab.content.map(normalizeField);
-    }
-    return [normalizeField(tab.content)];
-    };
+        // Normalizes a field into a string
+        const normalizeField = (field) => {
+          if (typeof field === "string") return field;
+          if (typeof field === "object" && field !== null) {
+            return Object.values(field).join(" ");
+          }
+          return "";
+        };
 
-    // Extracts all searchable fields from an event
-    const getSearchFields = (event) => {
-      const baseFields = [event.eventTitle, event.eventType, event.venue];
-      const tabFields = event.tabs ? event.tabs.flatMap(getTabFields) : [];
-      return [...baseFields, ...tabFields].filter(Boolean);
-    };
+        // Extracts fields from a single tab
+        const getTabFields = (tab) => {
+          if (!tab?.content) return [];
+          if (Array.isArray(tab.content)) {
+            return tab.content.map(normalizeField);
+          }
+          return [normalizeField(tab.content)];
+        };
 
-    // Checks if an event matches the search query
-    const matchesQuery = (event, query) => {
-      return getSearchFields(event).some((field) =>
-        field.toLowerCase().includes(query.toLowerCase())
-      );
-    };
+        // Extracts all searchable fields from an event
+        const getSearchFields = (event) => {
+          const baseFields = [event.eventTitle, event.eventType, event.venue];
+          const tabFields = event.tabs ? event.tabs.flatMap(getTabFields) : [];
+          return [...baseFields, ...tabFields].filter(Boolean);
+        };
 
-      // Main filter logic
-      const results = allEvents.filter((event) => matchesQuery(event, query));
+        // Checks if an event matches the search query
+        const matchesQuery = (event, query) => {
+          return getSearchFields(event).some((field) =>
+            field.toLowerCase().includes(query.toLowerCase()),
+          );
+        };
 
-      setSearchResults(results);
-    }, 300); // 300ms debounce
-  }, [allEvents]);
+        // Main filter logic
+        const results = allEvents.filter((event) => matchesQuery(event, query));
+
+        setSearchResults(results);
+      }, 300); // 300ms debounce
+    },
+    [allEvents],
+  );
 
   const clearSearch = React.useCallback(() => {
     setSearchQuery("");
@@ -102,54 +105,60 @@ export default function EventsPage() {
   const searchRef = React.useRef(null);
 
   // Memoize flattened events to prevent unnecessary recalculations
-  const allEventsAugmented = React.useMemo(() => 
-    stats.flatMap((category) =>
-      category.events.map((event) => ({
-        ...event,
-        categoryId: category.id,
-        categoryTitle: category.title,
-        // Map the data structure to match EventCard props
-        eventTabs: event.tabs,
-        eventDate: event.date,
-        eventVenue: event.venue,
-        eventImage: event.img,
-      }))
-    ), [stats]
+  const allEventsAugmented = React.useMemo(
+    () =>
+      stats.flatMap((category) =>
+        category.events.map((event) => ({
+          ...event,
+          categoryId: category.id,
+          categoryTitle: category.title,
+          // Map the data structure to match EventCard props
+          eventTabs: event.tabs,
+          eventDate: event.date,
+          eventVenue: event.venue,
+          eventImage: event.img,
+        })),
+      ),
+    [stats],
   );
 
   // Search functionality
-  const { searchQuery, searchResults, handleSearch, clearSearch } = useEventSearch(allEventsAugmented);
+  const { searchQuery, searchResults, handleSearch, clearSearch } =
+    useEventSearch(allEventsAugmented);
 
   // Close search results when clicking outside
   useOutsideClick(searchRef, clearSearch);
 
   // Categories with "All" option
-  const statsWithAll = React.useMemo(() => [
-    {
-      id: "all",
-      title: "All",
-      icon: (props) => (
-        <svg
-          {...props}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className="h-6 w-6"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          />
-        </svg>
-      ),
-      events: allEventsAugmented,
-    },
-    ...stats,
-  ], [stats, allEventsAugmented]);
+  const statsWithAll = React.useMemo(
+    () => [
+      {
+        id: "all",
+        title: "All",
+        icon: (props) => (
+          <svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-6 w-6"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        ),
+        events: allEventsAugmented,
+      },
+      ...stats,
+    ],
+    [stats, allEventsAugmented],
+  );
 
   // Set default category to "All"
   React.useEffect(() => {
@@ -158,18 +167,24 @@ export default function EventsPage() {
     }
   }, [statsWithAll, selectedCategory]);
 
-  const goToEvent = React.useCallback((eventId) => {
-    const el = document.getElementById(`event-${eventId}`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    clearSearch();
-  }, [clearSearch]);
+  const goToEvent = React.useCallback(
+    (eventId) => {
+      const el = document.getElementById(`event-${eventId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      clearSearch();
+    },
+    [clearSearch],
+  );
 
-  const handleCategorySelect = React.useCallback((category) => {
-    setSelectedCategory(category);
-    clearSearch(); // Clear search when switching categories
-  }, [clearSearch]);
+  const handleCategorySelect = React.useCallback(
+    (category) => {
+      setSelectedCategory(category);
+      clearSearch(); // Clear search when switching categories
+    },
+    [clearSearch],
+  );
 
   // Handle keyboard navigation for search results
   const handleSearchKeyDown = (e) => {
@@ -202,7 +217,11 @@ export default function EventsPage() {
                 {stat.icon ? (
                   <stat.icon className="h-8 w-8 text-gray-500" />
                 ) : (
-                  <img src={stat.img} alt={stat.title} className="h-8 w-8 object-cover rounded" />
+                  <img
+                    src={stat.img}
+                    alt={stat.title}
+                    className="h-8 w-8 object-cover rounded"
+                  />
                 )}
                 <div className="text-left">
                   <div className="text-sm font-medium text-gray-500">
@@ -234,12 +253,13 @@ export default function EventsPage() {
             {/* Search Icon */}
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           </div>
-          
+
           {/* Search Results Dropdown */}
           {searchResults.length > 0 && (
             <div className="absolute top-full mt-2 w-full bg-white shadow-lg rounded-lg z-10 max-h-60 overflow-y-auto border border-gray-200">
               <div className="p-2 text-xs text-gray-500 border-b">
-                {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} found
+                {searchResults.length} result
+                {searchResults.length !== 1 ? "s" : ""} found
               </div>
               {searchResults.map((event) => (
                 <button
@@ -247,7 +267,9 @@ export default function EventsPage() {
                   onClick={() => goToEvent(event.id)}
                   className="w-full text-left px-4 py-3 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none border-b border-gray-100 last:border-b-0"
                 >
-                  <div className="font-medium text-gray-900">{event.eventTitle}</div>
+                  <div className="font-medium text-gray-900">
+                    {event.eventTitle}
+                  </div>
                   <div className="text-sm text-gray-500">
                     {event.categoryTitle}
                     {event.eventType && ` • ${event.eventType}`}
@@ -266,85 +288,94 @@ export default function EventsPage() {
         </div>
       </div>
 
-        {/* Events List */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 ">
+      {/* Events List */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 ">
         {selectedCategory ? (
-            <>
+          <>
             <div className="mb-6">
-                <h2 className="text-2xl font-semibold text-gray-900">
+              <h2 className="text-2xl font-semibold text-gray-900">
                 {selectedCategory.title} Events
-                </h2>
-                <p className="text-gray-600 mt-1">
-                {selectedCategory.events.length} event{selectedCategory.events.length !== 1 ? 's' : ''} available
-                </p>
+              </h2>
+              <p className="text-gray-600 mt-1">
+                {selectedCategory.events.length} event
+                {selectedCategory.events.length !== 1 ? "s" : ""} available
+              </p>
             </div>
-            
+
             {selectedCategory.events.length > 0 ? (
-                <div className="space-y-6">
+              <div className="space-y-6">
                 {selectedCategory.id === "all"
-                    ? allEventsAugmented.map((event) => (
-                        <div key={event.id} id={`event-${event.id}`} className="w-full">
+                  ? allEventsAugmented.map((event) => (
+                      <div
+                        key={event.id}
+                        id={`event-${event.id}`}
+                        className="w-full"
+                      >
                         <EventCard
-                            eventTabs={event.eventTabs}
-                            eventType={event.eventType}
-                            eventTitle={event.eventTitle}
-                            eventDate={event.eventDate}
-                            eventVenue={event.eventVenue}
-                            eventImage={event.eventImage}
-                            brochureLink={event.brochureLink}
-                            problemLink={event.problemLink}
+                          eventTabs={event.eventTabs}
+                          eventType={event.eventType}
+                          eventTitle={event.eventTitle}
+                          eventDate={event.eventDate}
+                          eventVenue={event.eventVenue}
+                          eventImage={event.eventImage}
+                          brochureLink={event.brochureLink}
+                          problemLink={event.problemLink}
                         />
-                        </div>
+                      </div>
                     ))
-                    : selectedCategory.events.map((event) => (
-                        <div key={event.id} id={`event-${event.id}`} className="w-full">
+                  : selectedCategory.events.map((event) => (
+                      <div
+                        key={event.id}
+                        id={`event-${event.id}`}
+                        className="w-full"
+                      >
                         <EventCard
-                            eventTabs={event.tabs}
-                            eventType={event.eventType}
-                            eventTitle={event.eventTitle}
-                            eventDate={event.date}
-                            eventVenue={event.venue}
-                            eventImage={event.img}
-                            brochureLink={event.brochureLink}
-                            problemLink={event.problemLink}
+                          eventTabs={event.tabs}
+                          eventType={event.eventType}
+                          eventTitle={event.eventTitle}
+                          eventDate={event.date}
+                          eventVenue={event.venue}
+                          eventImage={event.img}
+                          brochureLink={event.brochureLink}
+                          problemLink={event.problemLink}
                         />
-                        </div>
+                      </div>
                     ))}
-                </div>
+              </div>
             ) : (
-                <div className="text-center py-12">
+              <div className="text-center py-12">
                 <svg
-                    className="mx-auto h-12 w-12 text-gray-400 mb-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
+                  className="mx-auto h-12 w-12 text-gray-400 mb-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
                 >
-                    <path
+                  <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
                     d="M8 7V3a4 4 0 118 0v4m-4 0h4m-4 0a4 4 0 118 0m-4 0h4"
-                    />
+                  />
                 </svg>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    No events in this category
+                  No events in this category
                 </h3>
                 <p className="text-gray-500">
-                    Check back later for new events or try a different category.
+                  Check back later for new events or try a different category.
                 </p>
-                </div>
+              </div>
             )}
-            </>
+          </>
         ) : (
-            <div className="text-center py-12">
+          <div className="text-center py-12">
             <div className="text-gray-500">
-                Select a category to view events
+              Select a category to view events
             </div>
-            </div>
+          </div>
         )}
-        </div>
+      </div>
     </div>
   );
 }

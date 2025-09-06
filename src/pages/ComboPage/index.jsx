@@ -36,7 +36,7 @@ export default function ComboPage() {
     resetFormData();
   }, [resetFormData]);
   return (
-    <div className="bg-gradient-blue h-[calc(100vh-7rem)] overflow-y-auto p-6 sm:p-10 ">
+    <div className="bg-gradient-blue  overflow-y-auto p-6 sm:p-10 ">
       <div className="flex flex-wrap justify-center gap-6 mb-8 ">
         {packs.map((pack) => {
           return <ComboPackCard key={pack.id} onOpen={setIsOpen} {...pack} />;

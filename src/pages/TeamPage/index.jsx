@@ -80,7 +80,7 @@ export default function TeamPage() {
     },
   ];
   return (
-    <div className="flex flex-col gap-y-5 p-6 md:p-10 xl:p-16 bg-gradient-blue h-[calc(100vh-7rem)] overflow-y-auto">
+    <div className="flex flex-col gap-y-5 p-6 md:p-10 xl:p-16 bg-gradient-blue overflow-y-auto">
       <div className="flex flex-col gap-y-5">
         <p className="text-3xl text-gray-900 font-semibold text-center ">
           Advisory Committee
