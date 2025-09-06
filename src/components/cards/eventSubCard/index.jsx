@@ -1,20 +1,20 @@
-import React from 'react';
-import { Phone, UserCircle, Award, BookOpen, Users, Mic } from 'lucide-react';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Phone, UserCircle, Award, BookOpen, Users, Mic } from "lucide-react";
+import PropTypes from "prop-types";
 
 export const MinCard = (props) => {
   const { title, contacts, rounds, rules, rewards, prerequisites, speakers } =
     props;
 
-  if (title === 'rounds') {
+  if (title === "rounds") {
     return <RoundsCard rounds={rounds} />;
-  } else if (title === 'rules') {
+  } else if (title === "rules") {
     return <RulesCard rules={rules} />;
-  } else if (title === 'rewards') {
+  } else if (title === "rewards") {
     return <RewardsCard rewards={rewards} />;
-  } else if (title === 'prerequisites') {
+  } else if (title === "prerequisites") {
     return <PrerequisitesCard prerequisites={prerequisites} />;
-  } else if (title === 'speakers') {
+  } else if (title === "speakers") {
     return <SpeakersCard speakers={speakers} />;
   } else {
     return <ContactCard contacts={contacts} />;
@@ -75,7 +75,7 @@ ContactCard.propTypes = {
       designation: PropTypes.string,
       email: PropTypes.string,
       phone: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };
 
@@ -112,7 +112,7 @@ RoundsCard.propTypes = {
       id: PropTypes.string.isRequired,
       title: PropTypes.string,
       content: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };
 
@@ -143,7 +143,7 @@ RulesCard.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
 };
 
@@ -172,7 +172,7 @@ RewardsCard.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
 };
 
@@ -237,6 +237,6 @@ SpeakersCard.propTypes = {
       id: PropTypes.string.isRequired,
       speakerName: PropTypes.string.isRequired,
       designation: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };

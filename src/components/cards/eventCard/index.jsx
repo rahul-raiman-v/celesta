@@ -1,36 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { CalendarDays, MapPin } from 'lucide-react';
-import { MinCard } from '../index';
-import { useNavigate } from 'react-router';
+import React from "react";
+import PropTypes from "prop-types";
+import { CalendarDays, MapPin } from "lucide-react";
+import { MinCard } from "../index";
+import { useNavigate } from "react-router";
 
 export function EventCard({
   eventTabs = [],
-  eventType = 'Untitled',
-  eventTitle = 'Untitled Event',
-  eventDate = 'Date not specified',
-  eventVenue = 'Venue not specified',
-  eventImage = '',
+  eventType = "Untitled",
+  eventTitle = "Untitled Event",
+  eventDate = "Date not specified",
+  eventVenue = "Venue not specified",
+  eventImage = "",
   brochureLink, // Fixed typo: was brouchreLink
   problemLink,
 }) {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = React.useState(eventTabs[0]?.title || '');
+  const [activeTab, setActiveTab] = React.useState(eventTabs[0]?.title || "");
 
   const activeTabData = eventTabs.find((tab) => tab.title === activeTab);
-  const activeContent = activeTabData?.content || '';
+  const activeContent = activeTabData?.content || "";
 
   const renderTabContent = () => {
     const tabTitle = activeTab.toLowerCase();
 
     if (
       [
-        'contact',
-        'rounds',
-        'rules',
-        'rewards',
-        'prerequisites',
-        'speakers',
+        "contact",
+        "rounds",
+        "rules",
+        "rewards",
+        "prerequisites",
+        "speakers",
       ].includes(tabTitle)
     ) {
       return (
@@ -38,24 +38,24 @@ export function EventCard({
           key={activeTabData.id}
           title={activeTabData.id}
           contacts={
-            activeTabData.id === 'contact' ? activeTabData.content : undefined
+            activeTabData.id === "contact" ? activeTabData.content : undefined
           }
           rounds={
-            activeTabData.id === 'rounds' ? activeTabData.content : undefined
+            activeTabData.id === "rounds" ? activeTabData.content : undefined
           }
           rules={
-            activeTabData.id === 'rules' ? activeTabData.content : undefined
+            activeTabData.id === "rules" ? activeTabData.content : undefined
           }
           rewards={
-            activeTabData.id === 'rewards' ? activeTabData.content : undefined
+            activeTabData.id === "rewards" ? activeTabData.content : undefined
           }
           prerequisites={
-            activeTabData.id === 'prerequisites'
+            activeTabData.id === "prerequisites"
               ? activeTabData.content
               : undefined
           }
           speakers={
-            activeTabData.id === 'speakers' ? activeTabData.content : undefined
+            activeTabData.id === "speakers" ? activeTabData.content : undefined
           }
         />
       );
@@ -63,7 +63,7 @@ export function EventCard({
 
     return (
       <div className="prose prose-sm max-w-none">
-        {typeof activeContent === 'string' ? (
+        {typeof activeContent === "string" ? (
           <div className="flex">
             <p>{activeContent}</p>
           </div>
@@ -79,15 +79,15 @@ export function EventCard({
   // Function to handle brochure download
   const handleBrochureDownload = () => {
     if (!brochureLink) {
-      alert('Brochure not available for this event');
+      alert("Brochure not available for this event");
       return;
     }
 
     // For Google Drive links, ensure proper download format
     let downloadUrl = brochureLink;
     if (
-      brochureLink.includes('drive.google.com') &&
-      !brochureLink.includes('export=download')
+      brochureLink.includes("drive.google.com") &&
+      !brochureLink.includes("export=download")
     ) {
       const fileId = brochureLink.match(/\/d\/([a-zA-Z0-9-_]+)/);
       if (fileId) {
@@ -97,19 +97,19 @@ export function EventCard({
 
     try {
       // Try direct download first (works for most direct file links)
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = downloadUrl;
-      link.style.display = 'none';
+      link.style.display = "none";
 
       // Set download attribute with a meaningful filename
-      const fileName = `${eventTitle.replace(/[^a-z0-9]/gi, '_')}_Brochure.pdf`;
+      const fileName = `${eventTitle.replace(/[^a-z0-9]/gi, "_")}_Brochure.pdf`;
       link.download = fileName;
 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      console.error('Download failed:', error);
+      console.error("Download failed:", error);
       // Fallback: open in same window if direct download fails
       window.location.href = downloadUrl;
     }
@@ -117,15 +117,15 @@ export function EventCard({
   // Function to handle problem download
   const handleProblemDownload = () => {
     if (!problemLink) {
-      alert('Problem not available for this event');
+      alert("Problem not available for this event");
       return;
     }
 
     // For Google Drive links, ensure proper download format
     let downloadUrl = problemLink;
     if (
-      problemLink.includes('drive.google.com') &&
-      !problemLink.includes('export=download')
+      problemLink.includes("drive.google.com") &&
+      !problemLink.includes("export=download")
     ) {
       const fileId = problemLink.match(/\/d\/([a-zA-Z0-9-_]+)/);
       if (fileId) {
@@ -135,19 +135,19 @@ export function EventCard({
 
     try {
       // Try direct download first (works for most direct file links)
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = downloadUrl;
-      link.style.display = 'none';
+      link.style.display = "none";
 
       // Set download attribute with a meaningful filename
-      const fileName = `${eventTitle.replace(/[^a-z0-9]/gi, '_')}_Brochure.pdf`;
+      const fileName = `${eventTitle.replace(/[^a-z0-9]/gi, "_")}_Brochure.pdf`;
       link.download = fileName;
 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      console.error('Download failed:', error);
+      console.error("Download failed:", error);
       // Fallback: open in same window if direct download fails
       window.location.href = downloadUrl;
     }
@@ -166,9 +166,9 @@ export function EventCard({
           <span
             className={`inline-flex items-center justify-center ml-2 px-3 py-1 rounded-full text-[12px] tracking-wide font-semibold uppercase shadow-sm
               ${
-                eventType === 'Technical'
-                  ? 'bg-gradient-to-r from-green-400 to-green-600 text-white'
-                  : 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-white'
+                eventType === "Technical"
+                  ? "bg-gradient-to-r from-green-400 to-green-600 text-white"
+                  : "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white"
               }`}
           >
             {eventType}
@@ -208,8 +208,8 @@ export function EventCard({
                 key={tab.id || tab.title}
                 className={`px-4 py-2 rounded-lg cursor-pointer text-sm font-medium transition-all duration-300 ${
                   activeTab === tab.title
-                    ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
-                    : 'border border-gray-300 text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:border-purple-300'
+                    ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md"
+                    : "border border-gray-300 text-gray-700 hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100 hover:border-purple-300"
                 }`}
                 onClick={() => setActiveTab(tab.title)}
                 aria-selected={activeTab === tab.title}
@@ -232,7 +232,7 @@ export function EventCard({
         <div className="flex items-center gap-x-4 max-sm:flex-col max-sm:gap-y-4">
           <button
             className="bg-gradient-to-r cursor-pointer from-orange-500 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 hover:scale-105 transition-all duration-300 w-fit shadow-md"
-            onClick={() => navigate('/combo')}
+            onClick={() => navigate("/combo")}
           >
             Register Now
           </button>
@@ -290,7 +290,7 @@ EventCard.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.object),
       ]),
-    })
+    }),
   ),
   eventType: PropTypes.string,
   eventTitle: PropTypes.string,
