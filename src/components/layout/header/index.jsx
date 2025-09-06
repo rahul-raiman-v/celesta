@@ -100,7 +100,7 @@ export const Header = () => {
               <img
                 src="https://res.cloudinary.com/dsz2br3qg/image/upload/v1755106862/bitsathyindia_fvkxxf.png"
                 alt=""
-                className="h-13 lg:hidden block "
+                className="h-13 scale-125 lg:hidden block "
                 loading="lazy"
               />
               <img
@@ -112,7 +112,7 @@ export const Header = () => {
               <img
                 src="https://res.cloudinary.com/dsz2br3qg/image/upload/v1756912823/codecirclelogo_excanr.png"
                 alt=""
-                className="h-13 hidden lg:block rounded-full"
+                className="h-13 lg:ml-0 ml-3 mb-1 lg:mb-0 rounded-full"
                 loading="lazy"
               />
             </div>
