@@ -26,14 +26,14 @@ export default function TeamPage() {
     {
       id: 1,
       name: "Dr Dhanasekar R",
-      designation: "Faculty",
+      designation: "Assistant Professor Level III",
       image:
         "https://www.bitsathy.ac.in/wp-content/uploads/Mr-Dhanasekar-R.png",
     },
     {
       id: 2,
-      name: "Nandhini K M",
-      designation: "Faculty",
+      name: "Prof. Nandhini K M",
+      designation: "Assistant Professor Level III",
       image:
         "https://www.bitsathy.ac.in/wp-content/uploads/Ms-Nandhini-K-M.png",
     },

@@ -14,12 +14,12 @@ export const ScheduleCard = ({ time, title, description, src }) => {
           <p className="md:text-lg font-medium text-gray-600">{description}</p>
         </div>
       </div>
-      <img
+      {/* <img
         src={src}
         alt={title}
         loading="lazy"
         className="aspect-video w-full lg:w-80 shadow-lg h-full shrink-0 border border-gray-400 rounded-lg"
-      />
+      /> */}
     </div>
   );
 };
