@@ -37,7 +37,6 @@ export default function TeamPage() {
       image:
         "https://www.bitsathy.ac.in/wp-content/uploads/Ms-Nandhini-K-M.png",
     },
-    
   ];
   const studentCoordinators = [
     {

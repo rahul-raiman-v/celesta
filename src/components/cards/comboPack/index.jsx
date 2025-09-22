@@ -1,15 +1,11 @@
 import { CircleCheck } from "lucide-react";
 import React from "react";
 
-export const ComboPackCard = ({
-  title,
-  details,
-  isPopular = false,
-}) => {
+export const ComboPackCard = ({ title, details, isPopular = false }) => {
   return (
     <button
       className={`relative rounded-xl shadow-lg p-8 flex flex-col cursor-pointer backdrop-blur-3xl border border-gray-300 bg-white  max-w-sm w-full `}
-      onClick={() => window.open('https://forms.gle/2AF6GNofg4bmajTS8')}
+      onClick={() => window.open("https://forms.gle/2AF6GNofg4bmajTS8")}
     >
       <p
         className={`text-3xl leading-relaxed font-bold text-gray-800 text-left `}
@@ -27,10 +23,7 @@ export const ComboPackCard = ({
             key={index}
             className={`flex items-center gap-1.5 text-gray-800 `}
           >
-            <CircleCheck
-              className={`size-5 text-green-400`}
-            />{" "}
-            {item}
+            <CircleCheck className={`size-5 text-green-400`} /> {item}
           </li>
         ))}
       </ul>
