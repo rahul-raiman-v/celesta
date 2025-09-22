@@ -11,7 +11,7 @@ export const EventsStore = create(() => ({
           id: "event-1",
           eventTitle: "Paper League",
           eventType: "Technical Event",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           img: "https://res.cloudinary.com/dbyxgnjkw/image/upload/v1756731069/WhatsApp_Image_2025-09-01_at_18.18.53_451861a1_tzhbqv.jpg",
           brochureLink:
@@ -136,7 +136,7 @@ export const EventsStore = create(() => ({
           id: "event-2",
           eventTitle: "PixelCraft",
           eventType: "Technical Event",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           img: "https://res.cloudinary.com/dbyxgnjkw/image/upload/v1756635369/ui_ux_qefri7.png",
           brochureLink:
@@ -270,7 +270,7 @@ export const EventsStore = create(() => ({
           id: "event-3",
           eventTitle: "BREAKTHRU",
           eventType: "Technical Event",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           img: "https://res.cloudinary.com/dsz2br3qg/image/upload/v1755236006/BreakThroughImg_z0jjf9.jpg",
           brochureLink:
@@ -417,7 +417,7 @@ export const EventsStore = create(() => ({
           id: "event-7",
           eventTitle: "QUIZXtreme",
           eventType: "Non-Technical Event",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           img: "https://res.cloudinary.com/dsz2br3qg/image/upload/v1755446896/ChatGPT_Image_Aug_14__2025__11_46_10_AM_1_i90vu5.png",
           brochureLink:
@@ -554,7 +554,7 @@ export const EventsStore = create(() => ({
           id: "event-5",
           eventTitle: "Guess In A Glance",
           eventType: "Non-Technical Event",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           img: "https://res.cloudinary.com/dsz2br3qg/image/upload/v1755236010/GuessInGlanceImg_zxtfq5.jpg",
           brochureLink:
@@ -689,7 +689,7 @@ export const EventsStore = create(() => ({
           id: "event-8",
           eventTitle: "VISIONHACK",
           eventType: "Hackathon",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           img: "https://res.cloudinary.com/dsz2br3qg/image/upload/v1755236015/VisionHackImg_ntfdbg.jpg",
           brochureLink:
@@ -842,7 +842,7 @@ export const EventsStore = create(() => ({
           eventTitle: "Workshop",
           eventType: "Workshop",
           img: "https://res.cloudinary.com/dbyxgnjkw/image/upload/v1756633064/dc27b3df-2f54-4b10-8bfb-38d97d13b113_ydsesg.png",
-          date: "September 26, 2025",
+          date: "October 10,2025",
           venue: "BIT Campus",
           brochureLink:
             "https://drive.google.com/uc?export=download&id=1PSox6lMKKK_DfBmcJ--sF2XQ48RtLuNV",

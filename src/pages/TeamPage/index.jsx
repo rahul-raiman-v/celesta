@@ -37,12 +37,7 @@ export default function TeamPage() {
       image:
         "https://www.bitsathy.ac.in/wp-content/uploads/Ms-Nandhini-K-M.png",
     },
-    {
-      id: 3,
-      name: "Prathap M R",
-      designation: "Faculty",
-      image: "https://www.bitsathy.ac.in/wp-content/uploads/Mr-Prathap-M-R.jpg",
-    },
+    
   ];
   const studentCoordinators = [
     {

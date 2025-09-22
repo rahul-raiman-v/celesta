@@ -11,7 +11,7 @@ export const TeamCard = ({
 }) => {
   if (variant?.trim() === "faculty") {
     return (
-      <div className="shadow-xl max-w-[317.45px] w-full rounded-lg px-8 py-12 border  flex flex-col gap-y-2.5 bg-transparent backdrop-blur-2xl ">
+      <div className="shadow-xl max-w-[317.45px] w-full rounded-lg px-8 py-12 border border-gray-300 flex flex-col gap-y-2.5 bg-transparent backdrop-blur-2xl ">
         <div className="flex items-center flex-col">
           <img
             src={image}
@@ -32,7 +32,7 @@ export const TeamCard = ({
     );
   }
   return (
-    <div className="shadow-xl rounded-lg px-6 py-5 border w-full flex flex-col gap-y-2.5 bg-transparent backdrop-blur-2xl max-w-[317.45px] h-full">
+    <div className="shadow-xl rounded-lg px-6 py-5 border border-gray-300 w-full flex flex-col gap-y-2.5 bg-transparent backdrop-blur-2xl max-w-[317.45px] h-full">
       <div className="flex items-center flex-col">
         <img
           src={image}

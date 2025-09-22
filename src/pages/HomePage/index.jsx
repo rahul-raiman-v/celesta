@@ -17,7 +17,7 @@ const HeroSection = () => {
   // This runs only once when the component mounts, thanks to the empty dependency array [].
   React.useEffect(() => {
     // Set the date we're counting down to.
-    const countDownDate = new Date("Sep 26, 2025 09:00:00").getTime();
+    const countDownDate = new Date("Oct 10, 2025 09:00:00").getTime();
 
     // Set an interval to update the countdown every second.
     const interval = setInterval(() => {
@@ -143,7 +143,7 @@ const HeroSection = () => {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span>September 29, 2025</span>
+            <span>October 10, 2025</span>
           </div>
           <div className="hidden sm:block text-gray-500">|</div>
           <div className="flex items-center gap-2">

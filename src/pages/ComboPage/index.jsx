@@ -1,9 +1,8 @@
 import React from "react";
-import { ComboPackCard, ComboModal } from "../../components";
+import { ComboPackCard } from "../../components";
 import { useComboStore } from "../../store";
 
 export default function ComboPage() {
-  const [isOpen, setIsOpen] = React.useState(false);
   const packs = [
     {
       id: "superior",
@@ -39,10 +38,9 @@ export default function ComboPage() {
     <div className="bg-gradient-blue  overflow-y-auto p-6 sm:p-10 ">
       <div className="flex flex-wrap justify-center gap-6 mb-8 ">
         {packs.map((pack) => {
-          return <ComboPackCard key={pack.id} onOpen={setIsOpen} {...pack} />;
+          return <ComboPackCard key={pack.id} onOpen={()=> window.open('https://forms.gle/2AF6GNofg4bmajTS8')} {...pack} />;
         })}
       </div>
-      {isOpen && <ComboModal onClose={setIsOpen} />}
     </div>
   );
 }
