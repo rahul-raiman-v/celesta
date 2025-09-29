@@ -9,17 +9,18 @@ export default function TeamPage() {
         "https://www.bitsathy.ac.in/wp-content/uploads/2022/08/chairman.webp",
       designation: "Chairman",
     },
+    
     {
       id: 2,
-      name: "Dr Palanisamy C",
-      image: "https://www.bitsathy.ac.in/wp-content/uploads/Principal-dep.jpg",
-      designation: "Principal",
-    },
-    {
-      id: 3,
       name: "Dr Sivakumar K",
       image: "https://www.bitsathy.ac.in/wp-content/uploads/Dr-Sivakumar-K.jpg",
       designation: "Dean",
+    },
+    {
+      id: 3,
+      name: "Dr Palanisamy C",
+      image: "https://www.bitsathy.ac.in/wp-content/uploads/Principal-dep.jpg",
+      designation: "Principal",
     },
   ];
   const teamCelesta = [
